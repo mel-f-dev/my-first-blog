@@ -1,28 +1,19 @@
-<html>
-    <head>
-        <title>Blog de Seulgi</title>
-    </head>
-    <body>
-        <div>
-            <h1>Blog de Seulgi</h1>
-            <p>Hi there!</p>
-            <p>It works!</p>
-        </div>
+{% extends 'blog/base.html' %}
 
-        {% for post in posts %}
-            <div>
-                <h1><a href=""> {{ post.title }} </a></h1>
-                <p>published: {{ post.published_date }} </p>
-                <p> {{ post.text|linebreaksbr }} </p>
-            </div>
-        {% endfor%}
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <h1><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.title }} </a></h1>
+            <p class="date">published: {{ post.published_date }} </p>
+            <p class="post-form">{{ post.text|linebreaksbr }}<textarea></textarea></p>
 
-        <div>
-            <h1>Contact</h1>
         </div>
-        <div>
-            created: 2020. 07. 14
-        </div>
+    {% endfor %}
 
-    </body>
-</html>
+    <div class="post">
+        <h1>Contact</h1>
+        <p>Tel.</p>
+        <p>Address.</p>
+        <p>Fax.</p>
+    </div>
+{% endblock %}
